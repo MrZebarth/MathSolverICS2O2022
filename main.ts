@@ -26,7 +26,18 @@ function ShowInput (state: number) {
     basic.showNumber(temp)
 }
 function Factor (A: number, B: number, C: number) {
-	
+    discrim = discriminant(A, B, C)
+    if (discrim < 0) {
+        basic.showString("No Roots",70)
+    } else if (discrim == 0) {
+        x1 = (-1 * B + discrim) / (2 * A)
+        basic.showString("x1,x2=" + x1,70)
+    } else {
+        x1 = (-1 * B + discrim) / (2 * A)
+        x2 = (-1 * B - discrim) / (2 * A)
+        basic.showString("x1=" + x1 + ", x2=" + x2)
+    }
+    Welcome()
 }
 function Eqn (x1: number, y1: number, x2: number, y2: number) {
     if (x1 == x2) {
@@ -84,6 +95,10 @@ input.onButtonPressed(Button.AB, function () {
         }
     }
 })
+function discriminant (a: number, b: number, c: number) {
+    d = b ** 2 - 4 * a * c
+    return d
+}
 input.onButtonPressed(Button.B, function () {
     temp += -1
     if (state == 0) {
@@ -111,6 +126,7 @@ function SetVariables () {
     temp = 0
     choice = 0
 }
+let d = 0
 let num4 = 0
 let num3 = 0
 let num2 = 0
@@ -119,6 +135,9 @@ let choice = 0
 let sign = ""
 let b = 0
 let m = 0
+let x2 = 0
+let discrim = 0
 let state = 0
 let temp = 0
+let x1 = 0
 Welcome()
