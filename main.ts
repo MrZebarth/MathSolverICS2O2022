@@ -1,6 +1,9 @@
+function ShowString (text: string) {
+    basic.showString(text,70)
+}
 function Welcome () {
-    basic.showString("Welcome!",70)
-SetVariables()
+    ShowString("Welcome!")
+    SetVariables()
     ShowFunction(temp)
 }
 input.onButtonPressed(Button.A, function () {
@@ -9,46 +12,46 @@ input.onButtonPressed(Button.A, function () {
         temp = temp % 3
         ShowFunction(temp)
     } else {
-        basic.showNumber(temp,70)
+        ShowString(convertToText(temp))
     }
 })
 function ShowInput (state: number) {
     if (state == 1) {
-        basic.showString("Num1",70)
+        ShowString("Num1")
     } else if (state == 2) {
-        basic.showString("Num2",70)
+        ShowString("Num2")
     } else if (state == 3) {
-        basic.showString("Num3",70)
+        ShowString("Num3")
     } else {
-        basic.showString("Num4",70)
+        ShowString("Num4")
     }
     temp = 0
-    basic.showNumber(temp)
+    ShowString(convertToText(temp))
 }
 function Factor (A: number, B: number, C: number) {
     discrim = discriminant(A, B, C)
     if (discrim < 0) {
-        basic.showString("No Roots",70)
+        ShowString("No Roots")
     } else if (discrim == 0) {
-        x1 = (-1 * B + discrim) / (2 * A)
-        basic.showString("x1,x2=" + x1,70)
+        x1 = (-1 * B + Math.sqrt(discrim)) / (2 * A)
+        ShowString("x1,x2=" + x1)
     } else {
-        x1 = (-1 * B + discrim) / (2 * A)
-        x2 = (-1 * B - discrim) / (2 * A)
-        basic.showString("x1=" + x1 + ", x2=" + x2)
+        x1 = (-1 * B + Math.sqrt(discrim)) / (2 * A)
+        x2 = (-1 * B - Math.sqrt(discrim)) / (2 * A)
+        ShowString("x1=" + x1 + ", x2=" + x2)
     }
     Welcome()
 }
 function Eqn (x1: number, y1: number, x2: number, y2: number) {
     if (x1 == x2) {
-        basic.showString("y = " + x1)
+        basic.showString("x = " + x1)
     } else if (y1 == y2) {
-        basic.showString("x = " + y1)
+        basic.showString("y = " + y1)
     } else {
         m = (y2 - y1) / (x2 - x1)
         b = y1 - m * x1
         if (b < 0) {
-            sign = "-"
+            sign = ""
         } else {
             sign = "+"
         }
@@ -58,11 +61,11 @@ function Eqn (x1: number, y1: number, x2: number, y2: number) {
 }
 function ShowFunction (func: number) {
     if (func == 0) {
-        basic.showString("Eqn",70)
+        ShowString("Eqn")
     } else if (func == 1) {
-        basic.showString("Factor",70)
+        ShowString("Factor")
     } else {
-        basic.showString("Intersect",70)
+        ShowString("Intersect")
     }
 }
 input.onButtonPressed(Button.AB, function () {
@@ -105,7 +108,7 @@ input.onButtonPressed(Button.B, function () {
         temp = temp % 3
         ShowFunction(temp)
     } else {
-        basic.showNumber(temp,70)
+        ShowString(convertToText(temp))
     }
 })
 function Intersect (m1: number, b1: number, m2: number, b2: number) {
@@ -136,8 +139,8 @@ let sign = ""
 let b = 0
 let m = 0
 let x2 = 0
+let x1 = 0
 let discrim = 0
 let state = 0
 let temp = 0
-let x1 = 0
 Welcome()
