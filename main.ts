@@ -112,7 +112,14 @@ input.onButtonPressed(Button.B, function () {
     }
 })
 function Intersect (m1: number, b1: number, m2: number, b2: number) {
-	
+    if (m1 == m2) {
+        ShowString("Parallel Lines")
+    } else {
+        x = (b2 - b1) / (m1 - m2)
+        y = m1 * x + b1
+        ShowString("(" + x + "," + y + ")")
+    }
+    Welcome()
 }
 function SetVariables () {
     // 0=function
@@ -129,6 +136,8 @@ function SetVariables () {
     temp = 0
     choice = 0
 }
+let y = 0
+let x = 0
 let d = 0
 let num4 = 0
 let num3 = 0
